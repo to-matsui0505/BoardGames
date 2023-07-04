@@ -93,55 +93,25 @@ class OthelloBoard {
     }
     // 駒を置く（指定した方向のみ）
     private putDirection(x: number, y: number, color: OthelloPieceColor, direction: number) {
-        // ひっくり返せる駒があるかどうか
-        let canReverse = false;
+        // 自分の駒にする
+        this._board[x][y].color = color;
         // ひっくり返せる駒があるかぎりループ
         while (true) {
             // 1つ隣のマスに移動
             x += OthelloBoard.DIRECTION[direction][0];
             y += OthelloBoard.DIRECTION[direction][1];
-            // 盤面の範囲外に出たらループを抜ける
-            if (x < 0 || y < 0 || x >= this._board.length || y >= this._board.length) {
-                break;
-            }
-            // 隣のマスに駒がない場合はループを抜ける
+            // 隣のマスの
+            // ・駒がない場合はループを抜ける
+            // ・駒が自分の駒の場合はループを抜ける
+            // ・駒が相手の駒の場合はひっくり返す
             if (this._board[x][y].color === OthelloPieceColor.None) {
                 break;
             }
-            // 隣のマスの駒が自分の駒の場合はループを抜ける
             if (this._board[x][y].color === color) {
                 break;
             }
-            // 隣のマスの駒が相手の駒の場合はひっくり返せる
             if (this._board[x][y].color !== color) {
-                canReverse = true;
-            }
-        }
-        // ひっくり返せる駒がある場合は置く
-        if (canReverse) {
-            // 1つ戻る
-            x -= OthelloBoard.DIRECTION[direction][0];
-            y -= OthelloBoard.DIRECTION[direction][1];
-            // 自分の駒にする
-            this._board[x][y].color = color;
-            // ひっくり返せる駒があるかぎりループ
-            while (true) {
-                // 1つ隣のマスに移動
-                x += OthelloBoard.DIRECTION[direction][0];
-                y += OthelloBoard.DIRECTION[direction][1];
-                // 隣のマスの
-                // ・駒がない場合はループを抜ける
-                // ・駒が自分の駒の場合はループを抜ける
-                // ・駒が相手の駒の場合はひっくり返す
-                if (this._board[x][y].color === OthelloPieceColor.None) {
-                    break;
-                }
-                if (this._board[x][y].color === color) {
-                    break;
-                }
-                if (this._board[x][y].color !== color) {
-                    this._board[x][y].reverse();
-                }
+                this._board[x][y].reverse();
             }
         }
     }
