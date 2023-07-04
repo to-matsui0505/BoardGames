@@ -1,3 +1,16 @@
 ﻿@{
     ViewData["Title"] = "オセロゲーム";
 }
+
+<div id='gameContainer'></div>
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/BoardGames/Othello.css" />
+}
+@section Scripts {
+    <script src="~/js/Views/BoardGames/Othello.js"></script>
+    <script src="~/js/Views/BoardGames/OthelloBoardView.js"></script>
+    <script src="~/js/Controllers/OthelloGameController.js"></script>
+    <script src="~/js/Models/OthelloBoard.js"></script>
+    <script src="~/js/Models/OthelloPiece.js"></script>
+}
