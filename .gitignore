@@ -2,3 +2,5 @@
 BoardGames/bin
 BoardGames/obj
 BoardGames/wwwroot/lib
+BoardGames/node_modules
+BoardGames/package-lock.json
