@@ -40,14 +40,27 @@ class OthelloBoardView {
 
     // オセロ盤のセルを更新
     private updateCell(x: number, y: number, piece: OthelloPiece) {
-        // オセロ盤のセルのインデックスを計算
-        const index = x * 8 + y;
-        // オセロ盤のセルの色を更新
-        this._cells[index].className = 'othello-cell';
-        if (piece.color === OthelloPieceColor.Black) {
-            this._cells[index].classList.add('othello-cell-black');
-        } else if (piece.color === OthelloPieceColor.White) {
-            this._cells[index].classList.add('othello-cell-white');
+        // 駒が置かれていない場合は何もしない
+        if (piece.color === OthelloPieceColor.None) {
+            return;
         }
+        // セルのエレメントを取得
+        const cell = this._cells[x * 8 + y];
+        // セルのエレメントの子要素を全て削除
+        while (cell.firstChild) {
+            cell.removeChild(cell.firstChild);
+        }
+        // セルの駒用のエレメントを作成
+        const pieceElement = document.createElement('div');
+        pieceElement.classList.add('othello-piece');
+        // 駒の色によってクラスを変更
+        if (piece.color === OthelloPieceColor.Black) {
+            pieceElement.classList.add('othello-piece-black');
+        }
+        if (piece.color === OthelloPieceColor.White) {
+            pieceElement.classList.add('othello-piece-white');
+        }
+        // セルのエレメントに駒のエレメントを追加
+        cell.appendChild(pieceElement);
     }
 }
