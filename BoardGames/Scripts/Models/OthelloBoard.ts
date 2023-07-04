@@ -108,6 +108,10 @@ class OthelloBoard {
             // 1つ隣のマスに移動
             x += OthelloBoard.DIRECTION[direction][0];
             y += OthelloBoard.DIRECTION[direction][1];
+            // 盤面の範囲外の場合はループを抜ける
+            if (x < 0 || x >= this._board.length || y < 0 || y >= this._board.length) {
+                break;
+            }
             // 隣のマスの
             // ・駒がない場合はループを抜ける
             // ・駒が自分の駒の場合はループを抜ける
