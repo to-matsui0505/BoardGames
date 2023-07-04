@@ -4,21 +4,16 @@ using System.Diagnostics;
 
 namespace BoardGames.Controllers
 {
-    public class HomeController : Controller
+    public class BoardGamesController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<BoardGamesController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public BoardGamesController(ILogger<BoardGamesController> logger)
         {
             _logger = logger;
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
-
-        public IActionResult Privacy()
+        public IActionResult Othello()
         {
             return View();
         }
