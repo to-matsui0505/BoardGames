@@ -55,32 +55,39 @@ class OthelloBoard {
     }
     // 駒が置けるかどうかを判定（指定した方向のみ）
     private canPutDirection(x: number, y: number, color: OthelloPieceColor, direction: number): boolean {
-        // ひっくり返せる駒があるかどうか
-        let canReverse = false;
+        // ひっくり返せる数
+        let reverseCount = 0;
         // ひっくり返せる駒があるかぎりループ
         while (true) {
             // 1つ隣のマスに移動
             x += OthelloBoard.DIRECTION[direction][0];
             y += OthelloBoard.DIRECTION[direction][1];
-            // 盤面の範囲外に出たらループを抜ける
-            if (x < 0 || y < 0 || x >= this._board.length || y >= this._board.length) {
+            // 盤面の範囲外の場合はループを抜ける
+            if (x < 0 || x >= this._board.length || y < 0 || y >= this._board.length) {
                 break;
             }
-            // 隣のマスに駒がない場合はループを抜ける
+            // 隣のマスの
+            // ・駒がない場合はループを抜ける
+            // ・駒が自分の駒の場合はループを抜ける
+            // ・駒が相手の駒の場合はひっくり返せる数をインクリメント
             if (this._board[x][y].color === OthelloPieceColor.None) {
+                // はさめない場合はひっくりえせる数を0にしてループを抜ける
+                reverseCount = 0;
                 break;
             }
-            // 隣のマスの駒が自分の駒の場合はループを抜ける
             if (this._board[x][y].color === color) {
                 break;
             }
-            // 隣のマスの駒が相手の駒の場合はひっくり返せる
             if (this._board[x][y].color !== color) {
-                canReverse = true;
+                reverseCount++;
             }
         }
-        // ひっくり返せる駒がある場合は置ける
-        return canReverse;
+        // ひっくり返せる数が0より大きい場合は置ける
+        if (reverseCount > 0) {
+            return true;
+        }
+        // ひっくり返せる数が0以下の場合は置けない
+        return false;
     }
     // 駒を置く
     public put(x: number, y: number, color: OthelloPieceColor) {
