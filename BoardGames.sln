@@ -3,7 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoardGames", "BoardGames\BoardGames.csproj", "{16A90328-EA53-4EB2-9BCE-895EA643BE8B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BoardGames", "BoardGames\BoardGames.csproj", "{16A90328-EA53-4EB2-9BCE-895EA643BE8B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ソリューション項目", "ソリューション項目", "{0513A1F5-FDF6-46A9-8E25-9A7989B037E5}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
